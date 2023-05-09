@@ -1,0 +1,57 @@
+:root {
+    --dark: #6b8bd4;
+    --dark-x: #ffffff;
+    --light: #ffffff;
+}
+
+body {
+    font-family: 'Spartan', sans-serif;
+    font-weight: 300;
+    color: var(--light);
+}
+h1{
+    color: black;
+}
+
+label{
+    color: blac;
+}
+
+.text-light {
+    color: var(--light) !important;
+}
+
+.bg-dark {
+    background-color: var(--dark) !important;
+}
+
+.bg-dark-x {
+    background-color: var(--dark-x);
+}
+
+.btn {
+    min-height: 3.125rem;
+    font-weight: 600;
+}
+
+.form-control {
+    min-height: 3.125rem;
+    line-height: initial;
+}
+
+.form-control:focus {
+    background-color: var(--dark-x);
+    outline: none;
+}
+
+.img-1 {
+    background-image: url('../img/login/junior-ferreira-7esRPTt38nI-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.img-2 {
+    background-image: url('../img/login/thought-catalog-505eectW54k-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+}
