@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
         integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 
-    <script src="https://kit.fontawesome.com/ffec4ec2ed.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/modal.css">
 
 </head>
 
@@ -85,34 +86,25 @@
                         </div>
                         <div class="col-lg-6 m-0">
                             <label class="form-label font-weight-bold">Telefono</label>
-                            <input type="tel" name="telefono" class="form-control bg-dark-x border-0 mb-2"
+                            <input type="number" name="telefono" class="form-control bg-dark-x border-0 mb-2"
                                 placeholder="Ingresa tu numero de telefono" aria-describedby="Telefono">
                         </div>
 
                         <div class="col-lg-6 m-0">
-                            <label class="form-label font-weight-bold">Email</label>
-                            <input type="email" name="email" class="form-control bg-dark-x border-0 mb-2"
+                            <label class="form-label font-weight-bold"> Email <a href="#" class="hero__cta"><i
+                                        class="bi bi-info-circle-fill color"></i></a>
+                            </label>
+                            <input type="email" name="email" class="form-control bg-dark-x border-0 mb-2 "
                                 placeholder="Ingresa tu email" aria-describedby="Email">
                         </div>
 
-                        <div class="col-lg-4 m-0">
-                            <label for="exampleSelectRol" class="form-label font-weight-bold">Rol</label>
-
-                            <select class="form-control bg-dark-x border-0 mb-2" name="tipoUsuario" id="selection"
-                                aria-describedby="Rol" required>
-                                <option>Seleccionar</option>
-                                <option value="1">Administrador</option>
-                                <option value="2">Usuario</option>
-                                <option value="3">Profesor</option>
-                            </select>
-                        </div>
                         <div class="col-lg-8 m-0">
                             <label class="form-label font-weight-bold">Contraseña</label>
                             <input type="password" name="clave" class="form-control bg-dark-x border-0 mb-2"
                                 placeholder="Ingresa tu contraseña" aria-describedby="Contraseña">
                         </div>
 
-                        <button type="submit" name="log" class="btn btn-primary w-100">Iniciar sesión</button>
+                        <button type="submit" name="log" class="btn btn-primary w-100">Registrarse</button>
                     </form>
 
                     <div class="text-center px-lg-0 pt-lg-0 pb-lg-0 p-0 w-100">
@@ -121,7 +113,17 @@
                     </div>
     </section>
 
-
+    <section class="modal ">
+        <div class="modal__container">
+            <img src="../img/modal/6306470-PhotoRoom.png-PhotoRoom.svg" class="modal__img">
+            <h2 class="modal__title">¡Bienvenido al sitio!</h2>
+            <p class="modal__paragraph">Señor usuario para un mejor manejo de la pagina se le recomienda registrarse
+                con el correo user@gmail.com <br>
+                Una vez registrado podra cambiarlo al actualizar sus datos, recuerde que el correo asignado es de uso
+                temporal
+            </p>
+            <a href="#" class="modal__close">Cerrar Modal</a>
+    </section>
 
     <!-- Optional JavaScript -->
     <!-- Popper.js first, then Bootstrap JS -->
@@ -132,68 +134,60 @@
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
     </script>
 
-
     <?php
 
-if (isset($_REQUEST['log']) && !empty($_REQUEST['identificacion']) && !empty($_REQUEST['nombres']) && !empty($_REQUEST['apellidos']) && !empty($_REQUEST['pais']) && !empty($_REQUEST['telefono']) && !empty($_REQUEST['email']) && !empty($_REQUEST['clave'])) {
+    if (isset($_REQUEST['log']) && !empty($_REQUEST['identificacion']) && !empty($_REQUEST['nombres']) && !empty($_REQUEST['apellidos']) && !empty($_REQUEST['pais']) && !empty($_REQUEST['telefono']) && !empty($_REQUEST['email']) && !empty($_REQUEST['clave'])) {
 
-    $c1 = $_REQUEST['identificacion'];
-    $c2 = $_REQUEST['nombres'];
-    $c3 = $_REQUEST['apellidos'];
-    $c4 = $_REQUEST['pais'];
-    $c5 = $_REQUEST['telefono'];
-    $c6 = $_REQUEST['email'];
-    $c7 = $_REQUEST['clave'];
+        $c1 = $_REQUEST['identificacion'];
+        $c2 = $_REQUEST['nombres'];
+        $c3 = $_REQUEST['apellidos'];
+        $c4 = $_REQUEST['pais'];
+        $c5 = $_REQUEST['telefono'];
+        $c6 = $_REQUEST['email'];
+        $c7 = $_REQUEST['clave'];
 
-    $tipoUsuario = $_REQUEST['tipoUsuario'];
+        include('../config/conexion.php');
 
-include('../config/conexion.php');
+        if ($c6 == 'example@gmail.com') { 
+        
 
-    if ($tipoUsuario == 1) {
+            $query = "CALL insertarAdministrador ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
+            $resultado = mysqli_query($conexion, $query);
+            if ($query) {
+                echo '<script>
+        
+        window.location = "../Inicio/administrador.php";
 
+        </script>';
+            }
+        } elseif ($c6 == 'user@gmail.com') {
 
-
-        $query = "CALL insertarAdministrador ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
-        $resultado = mysqli_query($conexion, $query);
-        if($query)
-        {
-            echo '<script>
+            $query = "CALL InsertarUsuario ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
+            $resultado = mysqli_query($conexion, $query);
+            if ($query) {
+                echo '<script>
         
         window.location = "../Inicio/index.html";
 
         </script>';
-        }
-    }     elseif ($tipoUsuario == 2) {
+            }
+        } elseif ($c6 == 'profesor@gmail.com') {
 
-        $query = "CALL InsertarUsuario ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
-        $resultado = mysqli_query($conexion, $query);
-        if($query)
-        {
-            echo '<script>
+            $query = "CALL insertarProfesor ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
+            $resultado = mysqli_query($conexion, $query);
+            if ($query) {
+                echo '<script>
         
         window.location = "../Inicio/index.html";
 
         </script>';
-        }
-    }  
-
-
-    elseif  ($tipoUsuario == 3) {
-
-        $query = "CALL insertarProfesor ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
-        $resultado = mysqli_query($conexion, $query);
-        if($query)
-        {
-            echo '<script>
-        
-        window.location = "../Inicio/index.html";
-
-        </script>';
+            }
         }
     }
-}
 
-?>
+    ?>
+
+    <script src="../js/modal.js"></script>
 
 </body>
 

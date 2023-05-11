@@ -45,15 +45,15 @@ if (isset($_POST['administrador'])) {
 
         <div class="mb-3">
             <label for class="form-label">Nombre Del Curso</label>
-            <input type="text" name="nombre_curso" class="form-control">
+            <input type="text" name="nombre_curso" class="form-control" required>
         </div>
         <div class=" mb-3">
             <label class="form-label">Tipo De Curso</label>
-            <input type="text" name="tipo_curso" class="form-control" aria-describedby="emailHelp">
+            <input type="text" name="tipo_curso" class="form-control" aria-describedby="emailHelp" required>
         </div>
         <div class="mb-3">
             <label for class="form-label">Precio </label>
-            <input type="text" name="precio" class="form-control">
+            <input type="text" name="precio" class="form-control" required>
 
         </div>
 
@@ -94,11 +94,11 @@ if (isset($_POST['administrador'])) {
 
         <div class="mb-3">
             <label class="form-label">Fecha Inicio</label>
-            <input type="date" name="fecha_inicio" class="form-control" aria-describedby="emailHelp">
+            <input type="date" name="fecha_inicio" class="form-control" aria-describedby="emailHelp" required>
         </div>
         <div class="mb-3">
             <label for class="form-label">Fecha Final</label>
-            <input type="date" name="fecha_fin" class="form-control">
+            <input type="date" name="fecha_fin" class="form-control" required>
         </div>
         <button type="submit" name="iniciar" class="btn btn-primary">Insertar</button>
     </form>
@@ -150,7 +150,7 @@ if (isset($_POST['administrador'])) {
 
         for ($i=0; $i<sizeof($profesor); $i++){
     
-            $insertar = "INSERT INTO cuidadorxespecie(id_cuidador,id_especie) VALUES ('$cuidadores[$i]','$ultimoCodigo')";
+            $insertar = "INSERT INTO profesor_has_curso (Profesor_id_profesor, Curso_id_curso) VALUES ('$profesor[$i]','$ultimoCodigo')";
         $query = mysqli_query($conexion, $insertar);
         }
     }

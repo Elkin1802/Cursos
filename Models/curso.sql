@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2023 a las 02:23:46
+-- Tiempo de generación: 11-05-2023 a las 17:58:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -21,271 +21,332 @@ SET time_zone = "+00:00";
 -- Base de datos: `curso`
 --
 
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarAdministrador` (IN `identificacion` INT, IN `nombres` VARCHAR(50), IN `apellidos` VARCHAR(50), IN `pais` VARCHAR(50), IN `telefono` VARCHAR(50), IN `email` VARCHAR(50), IN `clave` VARCHAR(50))   BEGIN
+
+DECLARE c1,c2,c3,c4,c5,c6,c7 varchar(50);
+
+SET c1 = identificacion;
+SET c2 = nombres;
+set c3 = apellidos;
+set c4 = pais;
+set c5 = telefono;
+set c6 = email;
+set c7 = clave;
+
+INSERT INTO administrador VALUES (c1,c2,c3,c4,c5,c6,c7);
+
+SELECT * FROM administrador;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarCursos` (IN `id_curso` INT, IN `nombre_curso` VARCHAR(50), IN `tipo_curso` VARCHAR(50), IN `precio` VARCHAR(50), IN `fecha_inicio` DATE, IN `fecha_fin` DATE, IN `administrador_id_administrador` INT)   BEGIN
+
+DECLARE c1,c2,c3,c4,c5,c6,c7 varchar(50);
+
+SET c1 = id_curso;
+SET c2 = nombre_curso;
+SET c3 = tipo_curso;
+SET c4 = precio;
+SET c5 = fecha_inicio;
+SET c6 = fecha_fin;
+SET c7 = administrador_id_administrador;
+
+INSERT INTO curso VALUES (c1,c2,c3,c4,c5,c6,c7);
+
+SELECT * FROM curso;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarMetodo` (IN `id_metodo` INT, IN `metodo_pago` VARCHAR(50))   BEGIN
+
+DECLARE c1,c2 varchar(50);
+
+SET c1 = id_metodo;
+set c2 = metodo_pago;
+
+INSERT INTO metodo_pago VALUES (c1,c2);
+
+SELECT * FROM metodo_pago;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarPago` (IN `id_pago` INT, IN `cantidad_pago` VARCHAR(50), IN `Metodo_pago_id_metodp` INT, IN `Usuario_id_usuario` INT)   BEGIN
+
+DECLARE c1,c2,c3,c4 varchar(50);
+
+SET c1 = id_pago;
+SET c2 = cantidad_pago;
+SET c3 = Metodo_pago_id_metodp;
+SET c4 = Usuario_id_usuario;
+
+INSERT INTO pago  VALUES (c1,c2,c3,c4);
+
+SELECT * FROM pago;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarProfesor` (IN `identificacion` INT, IN `nombres` VARCHAR(50), IN `apellidos` VARCHAR(50), IN `pais` VARCHAR(50), IN `telefono` VARCHAR(50), IN `email` VARCHAR(50), IN `clave` VARCHAR(50))   BEGIN
+
+DECLARE c1,c2,c3,c4,c5,c6,c7 varchar(50);
+
+SET c1 = identificacion;
+SET c2 = nombres;
+SET c3 = apellidos;
+SET c4 = pais;
+SET c5 = telefono;
+SET c6 = email;
+SET c7 = clave;
+
+INSERT INTO profesor VALUES (c1,c2,c3,c4,c5,c6,c7);
+
+SELECT * FROM profesor;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarUsuario` (IN `identificacion` INT, IN `nombres` VARCHAR(50), IN `apellidos` VARCHAR(50), IN `pais` VARCHAR(50), IN `telefono` VARCHAR(50), IN `email` VARCHAR(50), IN `clave` VARCHAR(50))   BEGIN
+
+DECLARE c1,c2,c3,c4,c5,c6,c7 varchar(50);
+
+SET c1 = identificacion;
+SET c2 = nombres;
+SET c3 = apellidos;
+set c4 = pais;
+SET c5 = telefono;
+SET c6 = email;
+SET c7 = clave;
+
+INSERT INTO usuario VALUES (c1,c2,c3,c4,c5,c6,c7);
+SELECT * FROM usuario;
+
+END$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `administradores`
+-- Estructura de tabla para la tabla `administrador`
 --
 
-CREATE TABLE `administradores` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nombres` varchar(255) DEFAULT NULL,
-  `apellidos` varchar(255) DEFAULT NULL,
-  `telefono` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `clave` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `administradores`
---
-
-INSERT INTO `administradores` (`id`, `nombres`, `apellidos`, `telefono`, `email`, `clave`) VALUES
-(71142005, 'Elkin Julian', 'Blandon Ocampo', '3116427679', 'elkinocampo277@gmail.com', '180204Eb');
+CREATE TABLE `administrador` (
+  `identificacion` int(11) NOT NULL,
+  `nombres` varchar(45) NOT NULL,
+  `apellidos` varchar(45) NOT NULL,
+  `pais` varchar(50) DEFAULT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `clave` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cursos`
+-- Estructura de tabla para la tabla `cliente_has_curso`
 --
 
-CREATE TABLE `cursos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `curso` varchar(255) DEFAULT NULL,
-  `tipo_curso` varchar(255) DEFAULT NULL,
-  `precio` varchar(255) DEFAULT NULL,
-  `fecha_inicio` date DEFAULT NULL,
-  `fecha_fin` date DEFAULT NULL,
-  `admin` bigint(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `cliente_has_curso` (
+  `Usuario_id_usuario` int(11) NOT NULL,
+  `Curso_id_curso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `metodo_pagos`
+-- Estructura de tabla para la tabla `curso`
 --
 
-CREATE TABLE `metodo_pagos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `metodo_pago` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `curso` (
+  `id_curso` int(11) NOT NULL,
+  `nombre_curso` varchar(45) NOT NULL,
+  `tipo_curso` varchar(45) NOT NULL,
+  `precio` varchar(45) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `administrador_id_administrador` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pagos`
+-- Estructura de tabla para la tabla `metodo_pago`
 --
 
-CREATE TABLE `pagos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `cantidad_pago` varchar(255) DEFAULT NULL,
-  `metodo_pago` bigint(20) UNSIGNED NOT NULL,
-  `usuario` bigint(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `metodo_pago` (
+  `id_metodo` int(11) NOT NULL,
+  `metodo_pago` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `profesores`
+-- Estructura de tabla para la tabla `pago`
 --
 
-CREATE TABLE `profesores` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nombres` varchar(255) DEFAULT NULL,
-  `apellidos` varchar(255) DEFAULT NULL,
-  `pais` varchar(255) DEFAULT NULL,
-  `telefono` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `clave` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `pago` (
+  `id_pago` int(11) NOT NULL,
+  `cantidad_pago` varchar(50) NOT NULL,
+  `Metodo_pago_id_metodp` int(11) NOT NULL,
+  `Usuario_id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `profesor_has_cursos`
+-- Estructura de tabla para la tabla `profesor`
 --
 
-CREATE TABLE `profesor_has_cursos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `cursos` bigint(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `profesor` (
+  `identificacion` int(11) NOT NULL,
+  `nombres` varchar(45) NOT NULL,
+  `apellidos` varchar(45) NOT NULL,
+  `pais` varchar(45) NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `clave` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Estructura de tabla para la tabla `profesor_has_curso`
 --
 
-CREATE TABLE `usuarios` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nombres` varchar(255) DEFAULT NULL,
-  `apellidos` varchar(255) DEFAULT NULL,
-  `pais` varchar(255) DEFAULT NULL,
-  `telefono` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `clave` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `profesor_has_curso` (
+  `Profesor_id_profesor` int(11) NOT NULL,
+  `Curso_id_curso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario_has_cursos`
+-- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario_has_cursos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `usuario` bigint(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `usuario` (
+  `identificacion` int(11) NOT NULL,
+  `nombres` varchar(45) NOT NULL,
+  `apellidos` varchar(45) NOT NULL,
+  `pais` varchar(45) NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `clave` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `administradores`
+-- Indices de la tabla `administrador`
 --
-ALTER TABLE `administradores`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `administrador`
+  ADD PRIMARY KEY (`identificacion`);
 
 --
--- Indices de la tabla `cursos`
+-- Indices de la tabla `cliente_has_curso`
 --
-ALTER TABLE `cursos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `cursos_admin_foreign` (`admin`);
+ALTER TABLE `cliente_has_curso`
+  ADD PRIMARY KEY (`Usuario_id_usuario`,`Curso_id_curso`),
+  ADD KEY `fk_Cliente_has_Curso_Curso1_idx` (`Curso_id_curso`),
+  ADD KEY `fk_Cliente_has_Curso_Cliente1_idx` (`Usuario_id_usuario`);
 
 --
--- Indices de la tabla `metodo_pagos`
+-- Indices de la tabla `curso`
 --
-ALTER TABLE `metodo_pagos`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `curso`
+  ADD PRIMARY KEY (`id_curso`),
+  ADD KEY `fk_curso_administrador1_idx` (`administrador_id_administrador`);
 
 --
--- Indices de la tabla `pagos`
+-- Indices de la tabla `metodo_pago`
 --
-ALTER TABLE `pagos`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `pagos_metodo_pago_unique` (`metodo_pago`),
-  ADD UNIQUE KEY `pagos_usuario_unique` (`usuario`);
+ALTER TABLE `metodo_pago`
+  ADD PRIMARY KEY (`id_metodo`);
 
 --
--- Indices de la tabla `profesores`
+-- Indices de la tabla `pago`
 --
-ALTER TABLE `profesores`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `pago`
+  ADD PRIMARY KEY (`id_pago`,`Metodo_pago_id_metodp`,`Usuario_id_usuario`),
+  ADD KEY `fk_Pago_Metodo_pago_idx` (`Metodo_pago_id_metodp`),
+  ADD KEY `fk_Pago_Cliente1_idx` (`Usuario_id_usuario`);
 
 --
--- Indices de la tabla `profesor_has_cursos`
+-- Indices de la tabla `profesor`
 --
-ALTER TABLE `profesor_has_cursos`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `profesor_has_cursos_cursos_unique` (`cursos`);
+ALTER TABLE `profesor`
+  ADD PRIMARY KEY (`identificacion`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indices de la tabla `profesor_has_curso`
 --
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `profesor_has_curso`
+  ADD PRIMARY KEY (`Profesor_id_profesor`,`Curso_id_curso`),
+  ADD KEY `fk_Profesor_has_Curso_Curso1_idx` (`Curso_id_curso`),
+  ADD KEY `fk_Profesor_has_Curso_Profesor1_idx` (`Profesor_id_profesor`);
 
 --
--- Indices de la tabla `usuario_has_cursos`
+-- Indices de la tabla `usuario`
 --
-ALTER TABLE `usuario_has_cursos`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `usuario_has_cursos_usuario_unique` (`usuario`);
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`identificacion`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `administradores`
+-- AUTO_INCREMENT de la tabla `curso`
 --
-ALTER TABLE `administradores`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71142006;
+ALTER TABLE `curso`
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT de la tabla `cursos`
+-- AUTO_INCREMENT de la tabla `metodo_pago`
 --
-ALTER TABLE `cursos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `metodo_pago`
+  MODIFY `id_metodo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT de la tabla `metodo_pagos`
+-- AUTO_INCREMENT de la tabla `pago`
 --
-ALTER TABLE `metodo_pagos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `pagos`
---
-ALTER TABLE `pagos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `profesores`
---
-ALTER TABLE `profesores`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `profesor_has_cursos`
---
-ALTER TABLE `profesor_has_cursos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `usuario_has_cursos`
---
-ALTER TABLE `usuario_has_cursos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `pago`
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `cursos`
+-- Filtros para la tabla `cliente_has_curso`
 --
-ALTER TABLE `cursos`
-  ADD CONSTRAINT `cursos_admin_foreign` FOREIGN KEY (`admin`) REFERENCES `administradores` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `cursos_id_foreign` FOREIGN KEY (`id`) REFERENCES `profesor_has_cursos` (`cursos`) ON DELETE CASCADE;
+ALTER TABLE `cliente_has_curso`
+  ADD CONSTRAINT `fk_Cliente_has_Curso_Cliente1` FOREIGN KEY (`Usuario_id_usuario`) REFERENCES `usuario` (`identificacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Cliente_has_Curso_Curso1` FOREIGN KEY (`Curso_id_curso`) REFERENCES `curso` (`id_curso`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `metodo_pagos`
+-- Filtros para la tabla `curso`
 --
-ALTER TABLE `metodo_pagos`
-  ADD CONSTRAINT `metodo_pagos_id_foreign` FOREIGN KEY (`id`) REFERENCES `pagos` (`metodo_pago`) ON DELETE CASCADE;
+ALTER TABLE `curso`
+  ADD CONSTRAINT `fk_curso_administrador1` FOREIGN KEY (`administrador_id_administrador`) REFERENCES `administrador` (`identificacion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `pagos`
+-- Filtros para la tabla `pago`
 --
-ALTER TABLE `pagos`
-  ADD CONSTRAINT `pagos_usuario_foreign` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+ALTER TABLE `pago`
+  ADD CONSTRAINT `fk_Pago_Cliente1` FOREIGN KEY (`Usuario_id_usuario`) REFERENCES `usuario` (`identificacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Pago_Metodo_pago` FOREIGN KEY (`Metodo_pago_id_metodp`) REFERENCES `metodo_pago` (`id_metodo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `profesor_has_cursos`
+-- Filtros para la tabla `profesor_has_curso`
 --
-ALTER TABLE `profesor_has_cursos`
-  ADD CONSTRAINT `profesor_has_cursos_id_foreign` FOREIGN KEY (`id`) REFERENCES `profesores` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_id_foreign` FOREIGN KEY (`id`) REFERENCES `usuario_has_cursos` (`usuario`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `usuario_has_cursos`
---
-ALTER TABLE `usuario_has_cursos`
-  ADD CONSTRAINT `usuario_has_cursos_id_foreign` FOREIGN KEY (`id`) REFERENCES `cursos` (`id`) ON DELETE CASCADE;
+ALTER TABLE `profesor_has_curso`
+  ADD CONSTRAINT `fk_Profesor_has_Curso_Curso1` FOREIGN KEY (`Curso_id_curso`) REFERENCES `curso` (`id_curso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Profesor_has_Curso_Profesor1` FOREIGN KEY (`Profesor_id_profesor`) REFERENCES `profesor` (`identificacion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
