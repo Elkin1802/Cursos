@@ -60,22 +60,14 @@
                         <div class="mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold">Email</label>
                             <input type="email" name="usuario" class="form-control bg-dark-x border-0"
-                                id="exampleInputEmail1" placeholder="Ingresa tu email" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleSelectRol" class="form-label font-weight-bold">Rol</label>
-
-                            <select class="form-control bg-dark-x border-0 mb-2" name="tipoUsuario" id="selection"
+                                id="exampleInputEmail1" placeholder="Ingresa tu email" aria-describedby="emailHelp"
                                 required>
-                                <option value="1">Administrador</option>
-                                <option value="2">Usuario</option>
-                                <option value="3">Profesor</option>
-                            </select>
                         </div>
+
                         <div class="mb-4">
                             <label for="exampleInputPassword1" class="form-label font-weight-bold">Contraseña</label>
                             <input type="password" name="clave" class="form-control bg-dark-x border-0 mb-2"
-                                placeholder="Ingresa tu contraseña" id="exampleInputPassword1">
+                                placeholder="Ingresa tu contraseña" id="exampleInputPassword1" required>
                             <a href="" id="emailHelp" class="form-text text-muted text-decoration-none">¿Has olvidado tu
                                 contraseña?</a>
                         </div>
@@ -106,60 +98,52 @@
 
         $usuario = $_REQUEST['usuario'];
         $clave = $_REQUEST['clave'];
-        $tipoUsuario = $_REQUEST['tipoUsuario'];
 
         include('config/conexion.php');
 
-        if ($tipoUsuario == 1) {
+            if ($usuario == $usuario) {
 
-            $query = "SELECT identificacion FROM administrador WHERE email='$usuario' AND clave='$clave'";
-            $resultado = mysqli_query($conexion, $query);
-            if (mysqli_num_rows($resultado) > 0) {
-                $row = mysqli_fetch_row($resultado);
-                $_SESSION['usuario'] = $usuario;
-                $_SESSION['tipoUsuario'] = $tipoUsuario;
+                $query = "SELECT identificacion FROM administrador WHERE email='$usuario' AND clave='$clave'";
+                $resultado = mysqli_query($conexion, $query);
+                if (mysqli_num_rows($resultado) > 0) {
+                    $row = mysqli_fetch_row($resultado);
+                    $_SESSION['usuario'] = $usuario;
 
-                echo '<script>
+                    echo '<script>
             
-            window.location = "Inicio/index.html";
+            window.location = "Inicio/administrador.php";
 
             </script>';
-            }
-        }     elseif ($tipoUsuario == 2) {
+                }
+            } if ($usuario == $usuario) {
 
-            $query = "SELECT identificacion FROM usuarios WHERE email='$usuario' AND clave='$clave'";
-            $resultado = mysqli_query($conexion, $query);
-            if (mysqli_num_rows($resultado) > 0) {
-                $row = mysqli_fetch_row($resultado);
-                $_SESSION['usuario'] = $usuario;
-                $_SESSION['tipoUsuario'] = $tipoUsuario;
-
-                echo '<script>
+                $query = "SELECT identificacion FROM usuario WHERE email='$usuario' AND clave='$clave'";
+                $resultado = mysqli_query($conexion, $query);
+                if (mysqli_num_rows($resultado) > 0) {
+                    $row = mysqli_fetch_row($resultado);
+                    $_SESSION['usuario'] = $usuario;
+                    echo '<script>
             
-            window.location = "Inicio/index.html";
+            window.location = "Inicio/inicio.html";
 
             </script>';
-            }
-        }
+                }
+            } if ($usuario == $usuario) {
 
-        elseif  ($tipoUsuario == 3) {
+                $query = "SELECT identificacion FROM profesor WHERE email='$usuario' AND clave='$clave'";
+                $resultado = mysqli_query($conexion, $query);
+                if (mysqli_num_rows($resultado) > 0) {
+                    $row = mysqli_fetch_row($resultado);
+                    $_SESSION['usuario'] = $usuario;
 
-            $query = "SELECT identificacion FROM profesores WHERE email='$usuario' AND clave='$clave'";
-            $resultado = mysqli_query($conexion, $query);
-            if (mysqli_num_rows($resultado) > 0) {
-                $row = mysqli_fetch_row($resultado);
-                $_SESSION['usuario'] = $usuario;
-                $_SESSION['tipoUsuario'] = $tipoUsuario;
-
-                echo '<script>
+                    echo '<script>
             
-            window.location = "Inicio/index.html";
+            window.location = "Inicio/profesor.html";
 
             </script>';
+                }
             }
         }
-    }
-
 
     ?>
 

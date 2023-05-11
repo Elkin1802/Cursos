@@ -18,35 +18,37 @@
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Identificación</label>
             <input type="number" name="id_usuario" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp">
+                aria-describedby="emailHelp" required>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Nombres</label>
-            <input type="text" name="nombres" class="form-control" id="exampleInputPassword1">
+            <input type="text" name="nombres" class="form-control" id="exampleInputPassword1" required>
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Apellidos</label>
             <input type="text" name="apellidos" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp">
+                aria-describedby="emailHelp" required>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">País </label>
-            <input type="text" name="pais" class="form-control" id="exampleInputPassword1">
+            <input type="text" name="pais" class="form-control" id="exampleInputPassword1" required>
 
         </div>
 
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Telefóno</label>
-            <input type="tel" name="telefono" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="tel" name="telefono" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                required>
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
-            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                required>
             <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" name="clave" class="form-control" id="exampleInputPassword1">
+            <input type="password" name="clave" class="form-control" id="exampleInputPassword1" required>
         </div>
         <button type="submit" name="iniciar" class="btn btn-primary">Insertar</button>
     </form>

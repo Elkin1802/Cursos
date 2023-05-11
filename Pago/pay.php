@@ -18,15 +18,16 @@
 
         <div class="mb-3">
             <label for class="form-label">Cantidad Del Pago</label>
-            <input type="number" name="cantidad_pago" class="form-control">
+            <input type="number" name="cantidad_pago" class="form-control" required>
         </div>
         <div class=" mb-3">
             <label class="form-label">Metodo De Pago</label>
-            <input type="number" name="Metodo_pago_id_metodp" class="form-control" aria-describedby="emailHelp">
+            <input type="number" name="Metodo_pago_id_metodp" class="form-control" aria-describedby="emailHelp"
+                required>
         </div>
         <div class="mb-3">
             <label for class="form-label">Indentificacion Del Usuario</label>
-            <input type="number" name="Usuario_id_usuario" class="form-control">
+            <input type="number" name="Usuario_id_usuario" class="form-control" required>
 
         </div>
 

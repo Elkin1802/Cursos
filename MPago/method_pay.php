@@ -18,7 +18,7 @@
 
         <div class="mb-3">
             <label for class="form-label">Metodo de Pago</label>
-            <input type="text" name="metodo_pago" class="form-control">
+            <input type="text" name="metodo_pago" class="form-control" required>
         </div>
 
         <button type="submit" name="iniciar" class="btn btn-primary">Insertar</button>
