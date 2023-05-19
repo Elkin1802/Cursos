@@ -84,7 +84,7 @@
         if ($query) {
             echo '<script>
             
-        window.location = "../Inicio/index.html";
+        window.location = "../IProfesor/InfoTeacher.php";
 
         </script>';
         } elseif ($query) {

@@ -68,8 +68,6 @@
                             <label for="exampleInputPassword1" class="form-label font-weight-bold">Contraseña</label>
                             <input type="password" name="clave" class="form-control bg-dark-x border-0 mb-2"
                                 placeholder="Ingresa tu contraseña" id="exampleInputPassword1" required>
-                            <a href="" id="emailHelp" class="form-text text-muted text-decoration-none">¿Has olvidado tu
-                                contraseña?</a>
                         </div>
                         <button type="submit" name="log" class="btn btn-primary w-100">Iniciar sesión</button>
                     </form>
@@ -138,7 +136,7 @@
 
                     echo '<script>
             
-            window.location = "Inicio/profesor.html";
+            window.location = "./IProfesor/InfoTeacher.php";
 
             </script>';
                 }
