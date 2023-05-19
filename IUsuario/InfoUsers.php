@@ -74,7 +74,7 @@
                 <?php
 $conexion=mysqli_connect("localhost","root","","curso");               
 $SQL="SELECT identificacion, nombres, apellidos, pais, telefono, email 
-FROM administrador $where";
+FROM usuario $where";
 $dato = mysqli_query($conexion, $SQL);
 
 if($dato -> num_rows >0){

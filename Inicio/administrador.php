@@ -5,14 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/tables.css">
     <link rel="stylesheet" href="../css/cursos.css">
+
+        <!----===== Boxicons CSS ===== -->
+        <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Document</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="../css/tables.css">
+    <link rel="stylesheet" href="../css/intento.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -23,33 +28,81 @@
 
 <body>
 
-    <!-- Inicio header -->
+    <!-- Inicio Menu -->
 
-    <header>
 
-        <div id="menu" class="fa-solid fa-bars"></div>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="../img/login/DIPLOMA.png" alt="">
+                </span>
 
-        <a href="#" class="logo"> <i class="fa-solid fa-user-graduate"> </i> LOGO </a>
+                <div class="text logo-text">
+                    <span class="name">Administracion</span>
+                    <span class="profession">Informacion</span>
+                </div>
+            </div>
 
-        <nav class="navbar">
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
 
-            <ul>
+        <div class="menu-bar">
+            <div class="menu">
 
-                <li><a class="active" href="#home">Inicio</a></li>
-                <li><a href="#">Actulizar mis datos</a></li>
-                <li><a href="#informacion">Información</a></li>
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Inicio</span>
+                        </a>
+                    </li>
 
-            </ul>
+                    <li class="nav-link">
+                        <a href="#">
+                        <i class='bx bx-edit-alt icon' ></i>
+                            <span class="text nav-text">Actualizar datos</span>
+                        </a>
+                    </li>
 
-        </nav>
+                    <li class="nav-link">
+                        <a href="#informacion">
+                        <i class='bx bx-info-circle icon'></i>
+                            <span class="text nav-text">Informacion</span>
+                        </a>
+                    </li>
 
-        <div id="login" class="fas fa-user-circle"></div>
+                </ul>
+            </div>
 
-    </header>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="../index.php">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
 
-    <!-- Fin del header -->
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                
+            </div>
+        </div>
+
+    </nav>
+    <section></section>
 
     <!-- Imagen fondo -->
+
 
     <section class="home" id="home">
 
@@ -58,6 +111,16 @@
         </h1>
         <p>Manten tu información actualizada</p>
         <a href="#"><button class="btn"> Información </button></a>
+
+        <div class="shape"></div>
+
+    </section>
+
+        <section class="home" id="home">
+
+        <h1>Mi trabajo no es hacérselo fácil a la gente...</h1>
+        <p>Manten tu información actualizada</p>
+        <a href="#"><button class="btn"> Informacion </button></a>
 
         <div class="shape"></div>
 
@@ -91,7 +154,7 @@
                             <td>Cursos</td>
                             <td>
 
-                                <a href="../IUsuario/InfoUsers.php"><button><i
+                                <a href="#"><button><i
                                             class="bi bi-info-circle-fill"></i></button></a>
 
 
@@ -102,7 +165,7 @@
 
                             <td>Profesores</td>
                             <td>
-
+                            <box-icon name='info-circle' animation='tada' rotate='90' ></box-icon>  
                                 <a href="../IProfesor/InfoTeacher.php"><button><i
                                             class="bi bi-info-circle-fill"></i></button></a>
 
@@ -126,7 +189,20 @@
                             <td>Pagos</td>
                             <td>
 
-                                <a href="../IUsuario/InfoUsers.php"><button type="submit"><i
+                                <a href="#"><button type="submit"><i
+                                            class="bi bi-info-circle-fill"></i></button></a>
+
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Administradores</td>
+                            <td>
+
+                                <a href="../IAdministrador/InfoAdm.php"><button type="submit"><i
                                             class="bi bi-info-circle-fill"></i></button></a>
 
 
@@ -153,6 +229,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
     </script>
+
+<script src="../js/main.js"></script>
 
 </body>
 

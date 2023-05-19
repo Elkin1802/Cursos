@@ -32,6 +32,9 @@
 
                     <button class="add_new" type="Submit" name="enviar">Buscar</button>
 
+                    <a href="../Profesor/profesor.php" id="agg" ><i class="bi bi-plus-circle-fill"></i></a>
+
+
             </div>
         </div>
 
@@ -59,7 +62,6 @@
 
                     <tr>
 
-                        <th>Identificacion</th>
                         <th>Nombres</th>
                         <th>Apellidos</th>
                         <th>Pais</th>
@@ -74,7 +76,7 @@
                 <?php
 $conexion=mysqli_connect("localhost","root","","curso");               
 $SQL="SELECT identificacion, nombres, apellidos, pais, telefono, email 
-FROM administrador $where";
+FROM profesor $where";
 $dato = mysqli_query($conexion, $SQL);
 
 if($dato -> num_rows >0){
@@ -84,7 +86,6 @@ if($dato -> num_rows >0){
 
                         echo '
                 <tr>
-                    <td>' . $fila['identificacion'] . '</td>
                     <td>' . $fila['nombres'] . '</td>
                     <td>' . $fila['apellidos'] . '</td>
                     <td>' . $fila['pais'] . '</td>

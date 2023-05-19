@@ -65,29 +65,29 @@
                         <div class="col-lg-5">
                             <label class="form-label font-weight-bold">Identificacion</label>
                             <input type="number" name="identificacion" class="form-control bg-dark-x border-0"
-                                placeholder="Ingresa tu identificacion" aria-describedby="Identificacion">
+                                placeholder="Ingresa tu identificacion" aria-describedby="Identificacion" required>
                         </div>
                         <div class="col-lg-7">
                             <label class="form-label font-weight-bold">Nombres</label>
                             <input type="text" name="nombres" class="form-control bg-dark-x border-0"
-                                placeholder="Ingresa tus nombres" aria-describedby="Nombre">
+                                placeholder="Ingresa tus nombres" aria-describedby="Nombre" required>
 
                         </div>
                         <div class="col-lg-7 m-0">
                             <label class="form-label font-weight-bold">Apellidos</label>
                             <input type="text" name="apellidos" class="form-control bg-dark-x border-0 mb-2"
-                                placeholder="Ingresa tus apellidos" aria-describedby="Apellidos">
+                                placeholder="Ingresa tus apellidos" aria-describedby="Apellidos" required>
                         </div>
 
                         <div class="col-lg-5 m-0">
                             <label class="form-label font-weight-bold">Pais</label>
                             <input type="text" name="pais" class="form-control bg-dark-x border-0 mb-2"
-                                placeholder="Ingresa tu pais" aria-describedby="Pais">
+                                placeholder="Ingresa tu pais" aria-describedby="Pais" required>
                         </div>
                         <div class="col-lg-6 m-0">
                             <label class="form-label font-weight-bold">Telefono</label>
                             <input type="number" name="telefono" class="form-control bg-dark-x border-0 mb-2"
-                                placeholder="Ingresa tu numero de telefono" aria-describedby="Telefono">
+                                placeholder="Ingresa tu numero de telefono" aria-describedby="Telefono" required>
                         </div>
 
                         <div class="col-lg-6 m-0">
@@ -95,13 +95,13 @@
                                         class="bi bi-info-circle-fill color"></i></a>
                             </label>
                             <input type="email" name="email" class="form-control bg-dark-x border-0 mb-2 "
-                                placeholder="Ingresa tu email" aria-describedby="Email">
+                                placeholder="Ingresa tu email" aria-describedby="Email" required>
                         </div>
 
                         <div class="col-lg-8 m-0">
                             <label class="form-label font-weight-bold">Contraseña</label>
                             <input type="password" name="clave" class="form-control bg-dark-x border-0 mb-2"
-                                placeholder="Ingresa tu contraseña" aria-describedby="Contraseña">
+                                placeholder="Ingresa tu contraseña" aria-describedby="Contraseña" required>
                         </div>
 
                         <button type="submit" name="log" class="btn btn-primary w-100">Registrarse</button>
@@ -117,12 +117,10 @@
         <div class="modal__container">
             <img src="../img/modal/6306470-PhotoRoom.png-PhotoRoom.svg" class="modal__img">
             <h2 class="modal__title">¡Bienvenido al sitio!</h2>
-            <p class="modal__paragraph">Señor usuario para un mejor manejo de la pagina se le recomienda registrarse
-                con el correo user@gmail.com <br>
-                Una vez registrado podra cambiarlo al actualizar sus datos, recuerde que el correo asignado es de uso
-                temporal
+            <p class="modal__paragraph">Señor usuario, gracias por confiar en nostros <br>
+            Esperamos que sea una experiencia unica para la adquisicion de nuevos conocimientos
             </p>
-            <a href="#" class="modal__close">Cerrar Modal</a>
+            <a href="#" class="modal__close">Cerrar</a>
     </section>
 
     <!-- Optional JavaScript -->
@@ -148,41 +146,19 @@
 
         include('../config/conexion.php');
 
-        if ($c6 == 'example@gmail.com') { 
+        if ($c6=$c6) { 
         
 
-            $query = "CALL insertarAdministrador ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
+            $query = "CALL insertarUsuario ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
             $resultado = mysqli_query($conexion, $query);
             if ($query) {
                 echo '<script>
         
-        window.location = "../Inicio/administrador.php";
+        window.location = "../Inicio/inicio.html";
 
         </script>';
             }
-        } elseif ($c6 == 'user@gmail.com') {
-
-            $query = "CALL InsertarUsuario ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
-            $resultado = mysqli_query($conexion, $query);
-            if ($query) {
-                echo '<script>
-        
-        window.location = "../Inicio/index.html";
-
-        </script>';
-            }
-        } elseif ($c6 == 'profesor@gmail.com') {
-
-            $query = "CALL insertarProfesor ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
-            $resultado = mysqli_query($conexion, $query);
-            if ($query) {
-                echo '<script>
-        
-        window.location = "../Inicio/index.html";
-
-        </script>';
-            }
-        }
+        } 
     }
 
     ?>

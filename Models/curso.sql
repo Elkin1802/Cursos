@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-05-2023 a las 17:58:01
+-- Tiempo de generación: 19-05-2023 a las 02:30:18
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -43,11 +43,11 @@ SELECT * FROM administrador;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarCursos` (IN `id_curso` INT, IN `nombre_curso` VARCHAR(50), IN `tipo_curso` VARCHAR(50), IN `precio` VARCHAR(50), IN `fecha_inicio` DATE, IN `fecha_fin` DATE, IN `administrador_id_administrador` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarCursos` (IN `id_curso` INT, IN `nombre_curso` VARCHAR(50), IN `tipo_curso` VARCHAR(50), IN `precio` VARCHAR(50), IN `fecha_inicio` VARCHAR(50), IN `fecha_fin` VARCHAR(50), IN `administrador_id_administrador` INT)   BEGIN
 
 DECLARE c1,c2,c3,c4,c5,c6,c7 varchar(50);
 
-SET c1 = id_curso;
+SET c1 = identificacion; 
 SET c2 = nombre_curso;
 SET c3 = tipo_curso;
 SET c4 = precio;
@@ -55,18 +55,18 @@ SET c5 = fecha_inicio;
 SET c6 = fecha_fin;
 SET c7 = administrador_id_administrador;
 
-INSERT INTO curso VALUES (c1,c2,c3,c4,c5,c6,c7);
+INSERT INTO administrador VALUES (c1,c2,c3,c4,c5,c6,c7);
 
-SELECT * FROM curso;
+SELECT * FROM administrador;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarMetodo` (IN `id_metodo` INT, IN `metodo_pago` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarMetodo` (IN `id_metodo` INT, IN `metodo_pago` INT)   BEGIN
 
 DECLARE c1,c2 varchar(50);
 
-SET c1 = id_metodo;
-set c2 = metodo_pago;
+SET c1 = id_curso;
+SET c2 = metodo_pago;
 
 INSERT INTO metodo_pago VALUES (c1,c2);
 
@@ -74,16 +74,16 @@ SELECT * FROM metodo_pago;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarPago` (IN `id_pago` INT, IN `cantidad_pago` VARCHAR(50), IN `Metodo_pago_id_metodp` INT, IN `Usuario_id_usuario` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarPago` (IN `id_pago` INT, IN `cantidad_pago` VARCHAR(50), IN `Metodo_pago_id_metodp` INT, IN `Usuario_id_usuario` INT)   BEGIN
 
 DECLARE c1,c2,c3,c4 varchar(50);
 
-SET c1 = id_pago;
+SET c1 = id_Pago;
 SET c2 = cantidad_pago;
 SET c3 = Metodo_pago_id_metodp;
 SET c4 = Usuario_id_usuario;
 
-INSERT INTO pago  VALUES (c1,c2,c3,c4);
+INSERT INTO pago VALUES (c1,c2,c3,c4);
 
 SELECT * FROM pago;
 
@@ -141,6 +141,13 @@ CREATE TABLE `administrador` (
   `email` varchar(45) NOT NULL,
   `clave` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `administrador`
+--
+
+INSERT INTO `administrador` (`identificacion`, `nombres`, `apellidos`, `pais`, `telefono`, `email`, `clave`) VALUES
+(67021921, 'Sandra Marcela', 'Chaparro Palomino', 'Colombia', '3158764252', 'admin@gmail.com', '1234');
 
 -- --------------------------------------------------------
 
@@ -208,6 +215,13 @@ CREATE TABLE `profesor` (
   `email` varchar(45) NOT NULL,
   `clave` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `profesor`
+--
+
+INSERT INTO `profesor` (`identificacion`, `nombres`, `apellidos`, `pais`, `telefono`, `email`, `clave`) VALUES
+(52429849, 'Ninsa', 'Oyola Moreno', 'Colombia', '3205784578', 'profesor@gmail.com', '1234');
 
 -- --------------------------------------------------------
 
@@ -303,19 +317,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `metodo_pago`
 --
 ALTER TABLE `metodo_pago`
-  MODIFY `id_metodo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_metodo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
