@@ -49,13 +49,13 @@ button {
     color: #ffffff;
 }
 
-td button:nth-child(1) {
+td #agg:nth-child(1) {
 
     background-color: #0298cf;
 
 }
 
-td button:nth-child(2) {
+td #agg:nth-child(2) {
 
     background-color: #f80000;
 

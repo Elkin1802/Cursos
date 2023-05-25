@@ -1,11 +1,15 @@
 <?php
+	$database="curso";
+	$user='root';
+	$password='';
 
 
-$conexion = mysqli_connect('localhost','root','','curso');
+try {
+	
+	$conexion=new PDO('mysql:host=localhost;dbname='.$database,$user,$password);
 
-//  if($conexion){
-//         echo "<p>Función la conexión</p>";
-//     }
-//     else{
-//         echo "Error en la conexión".mysqli_error($conexion);
-//     }
+} catch (PDOException $e) {
+	echo "Error".$e->getMessage();
+}
+
+?>
