@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-05-2023 a las 02:30:18
+-- Tiempo de generación: 26-05-2023 a las 01:41:29
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,111 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `curso`
 --
-
-DELIMITER $$
---
--- Procedimientos
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarAdministrador` (IN `identificacion` INT, IN `nombres` VARCHAR(50), IN `apellidos` VARCHAR(50), IN `pais` VARCHAR(50), IN `telefono` VARCHAR(50), IN `email` VARCHAR(50), IN `clave` VARCHAR(50))   BEGIN
-
-DECLARE c1,c2,c3,c4,c5,c6,c7 varchar(50);
-
-SET c1 = identificacion;
-SET c2 = nombres;
-set c3 = apellidos;
-set c4 = pais;
-set c5 = telefono;
-set c6 = email;
-set c7 = clave;
-
-INSERT INTO administrador VALUES (c1,c2,c3,c4,c5,c6,c7);
-
-SELECT * FROM administrador;
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarCursos` (IN `id_curso` INT, IN `nombre_curso` VARCHAR(50), IN `tipo_curso` VARCHAR(50), IN `precio` VARCHAR(50), IN `fecha_inicio` VARCHAR(50), IN `fecha_fin` VARCHAR(50), IN `administrador_id_administrador` INT)   BEGIN
-
-DECLARE c1,c2,c3,c4,c5,c6,c7 varchar(50);
-
-SET c1 = identificacion; 
-SET c2 = nombre_curso;
-SET c3 = tipo_curso;
-SET c4 = precio;
-SET c5 = fecha_inicio;
-SET c6 = fecha_fin;
-SET c7 = administrador_id_administrador;
-
-INSERT INTO administrador VALUES (c1,c2,c3,c4,c5,c6,c7);
-
-SELECT * FROM administrador;
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarMetodo` (IN `id_metodo` INT, IN `metodo_pago` INT)   BEGIN
-
-DECLARE c1,c2 varchar(50);
-
-SET c1 = id_curso;
-SET c2 = metodo_pago;
-
-INSERT INTO metodo_pago VALUES (c1,c2);
-
-SELECT * FROM metodo_pago;
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarPago` (IN `id_pago` INT, IN `cantidad_pago` VARCHAR(50), IN `Metodo_pago_id_metodp` INT, IN `Usuario_id_usuario` INT)   BEGIN
-
-DECLARE c1,c2,c3,c4 varchar(50);
-
-SET c1 = id_Pago;
-SET c2 = cantidad_pago;
-SET c3 = Metodo_pago_id_metodp;
-SET c4 = Usuario_id_usuario;
-
-INSERT INTO pago VALUES (c1,c2,c3,c4);
-
-SELECT * FROM pago;
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarProfesor` (IN `identificacion` INT, IN `nombres` VARCHAR(50), IN `apellidos` VARCHAR(50), IN `pais` VARCHAR(50), IN `telefono` VARCHAR(50), IN `email` VARCHAR(50), IN `clave` VARCHAR(50))   BEGIN
-
-DECLARE c1,c2,c3,c4,c5,c6,c7 varchar(50);
-
-SET c1 = identificacion;
-SET c2 = nombres;
-SET c3 = apellidos;
-SET c4 = pais;
-SET c5 = telefono;
-SET c6 = email;
-SET c7 = clave;
-
-INSERT INTO profesor VALUES (c1,c2,c3,c4,c5,c6,c7);
-
-SELECT * FROM profesor;
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarUsuario` (IN `identificacion` INT, IN `nombres` VARCHAR(50), IN `apellidos` VARCHAR(50), IN `pais` VARCHAR(50), IN `telefono` VARCHAR(50), IN `email` VARCHAR(50), IN `clave` VARCHAR(50))   BEGIN
-
-DECLARE c1,c2,c3,c4,c5,c6,c7 varchar(50);
-
-SET c1 = identificacion;
-SET c2 = nombres;
-SET c3 = apellidos;
-set c4 = pais;
-SET c5 = telefono;
-SET c6 = email;
-SET c7 = clave;
-
-INSERT INTO usuario VALUES (c1,c2,c3,c4,c5,c6,c7);
-SELECT * FROM usuario;
-
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -147,7 +42,7 @@ CREATE TABLE `administrador` (
 --
 
 INSERT INTO `administrador` (`identificacion`, `nombres`, `apellidos`, `pais`, `telefono`, `email`, `clave`) VALUES
-(67021921, 'Sandra Marcela', 'Chaparro Palomino', 'Colombia', '3158764252', 'admin@gmail.com', '1234');
+(12345, 'Prueba', 'Prueba', 'Mexico', '01234456789', 'admin@gmail.com', '1234');
 
 -- --------------------------------------------------------
 
@@ -173,7 +68,9 @@ CREATE TABLE `curso` (
   `precio` varchar(45) NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
-  `administrador_id_administrador` int(11) NOT NULL
+  `administrador_id_administrador` int(11) NOT NULL,
+  `foto` longblob NOT NULL,
+  `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -221,7 +118,7 @@ CREATE TABLE `profesor` (
 --
 
 INSERT INTO `profesor` (`identificacion`, `nombres`, `apellidos`, `pais`, `telefono`, `email`, `clave`) VALUES
-(52429849, 'Ninsa', 'Oyola Moreno', 'Colombia', '3205784578', 'profesor@gmail.com', '1234');
+(71142005, 'Elkin', 'Blandon', 'Colombia', '3505277807', 'elkinbla@hotmail.com', '1452');
 
 -- --------------------------------------------------------
 
@@ -247,8 +144,16 @@ CREATE TABLE `usuario` (
   `pais` varchar(45) NOT NULL,
   `telefono` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `clave` varchar(45) NOT NULL
+  `clave` varchar(45) NOT NULL,
+  `estado` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`identificacion`, `nombres`, `apellidos`, `pais`, `telefono`, `email`, `clave`, `estado`) VALUES
+(123456789, 'Usuario', 'Prueba', 'Mexico', '01234456789', 'usuario@gmail.com', '12345', 'Evaluando');
 
 --
 -- Índices para tablas volcadas
@@ -317,7 +222,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `metodo_pago`
