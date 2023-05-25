@@ -304,6 +304,48 @@ section {
 
 }
 
+
+.course {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.course .image {
+
+    flex:1 1 40rem;
+    height: 50rem;
+    background:url(../img/courses/1263.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: screen;
+
+}
+
+.course .content{
+
+    flex: 1 1 40rem;
+    padding: 2rem;
+
+}
+
+.course .content h3{
+
+    font-size: 4rem;
+    color: #333;
+
+}
+.course .content p{
+
+    font-size: 1.6rem;
+    color: #666;
+    padding: 1rem 0 ;
+
+}
+
 .teacher p {
 
     font-size: 1.8rem;

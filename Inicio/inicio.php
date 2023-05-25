@@ -35,6 +35,10 @@ if ($_SESSION['usuario']) {
 
         <title>Document</title>
 
+        <!-- aos css cdn link -->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
         <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -79,21 +83,21 @@ if ($_SESSION['usuario']) {
                         </li>
 
                         <li class="nav-link">
-                            <a href="#cursos">
+                            <a href="#course">
                                 <i class='bx bx-library icon'></i>
                                 <span class="text nav-text">Cursos</span>
                             </a>
                         </li>
 
                         <li class="nav-link">
-                            <a href="#profesores">
+                            <a href="#teacher">
                                 <i class='bx bxs-user-badge icon'></i>
                                 <span class="text nav-text">Profesores</span>
                             </a>
                         </li>
 
                         <li class="nav-link">
-                            <a href="#datos">
+                            <a href="../Usuario/update_usuario.php">
                                 <i class='bx bx-edit-alt icon'></i>
                                 <span class="text nav-text">Actualizar Datos</span>
                             </a>
@@ -128,9 +132,10 @@ if ($_SESSION['usuario']) {
         </nav>
 
         <section></section>
+
         <!-- Imagen fondo -->
 
-        <section class="home" id="home">
+        <section class="home" id="home" data-aos="fade-right">
 
             <h1>La enseñanza,debe ser, sobre todo una provocación intelectual.</h1>
             <p>Qué esperas para aprender con nosotros, únete ahora!!</p>
@@ -140,11 +145,13 @@ if ($_SESSION['usuario']) {
 
         </section>
 
+        <!-- Inicio acerca de    -->
+
         <section class="about" id="about">
 
-            <div class="image"></div>
+            <div class="image" data-aos="fade-right"></div>
 
-            <div class="content">
+            <div class="content" data-aos="fade-left">
 
                 <h3>Quienes somos?</h3>
                 <p>Somos un ente que quiere brindad la posibilidad de llegar a todos los hogares del mundo, y de aquelleas
@@ -158,9 +165,38 @@ if ($_SESSION['usuario']) {
 
             </div>
 
+
+
         </section>
 
         <!-- End about -->
+
+        <!-- Sesion cursos -->
+
+        <section class="course" id="course">
+
+            <div class="image" data-aos="fade-right"></div>
+
+            <div class="content" data-aos="fade-left">
+
+                <h3>Nuestros cursos</h3>
+                <p>No lo encontrarás a mejor precio. Así parece más barato de lo que es.
+                    Esta técnica de persuasión suele funcionar en cursos premium que usualmente llevan precios altos.
+                </p>
+
+                <p>Si no te convence, lo devuelves. Cuanto más fácil se lo pongas a tus clientes, más venderás,
+                    porque se sienten más relajados. No olvides dejar claro en los términos de uso tus condiciones para las
+                    devoluciones de los alumnos. Asegúrate que la plataforma elearning que usas te facilita la opción de colocar
+                    estos términos que el alumno está obligado a aceptar.
+                </p>
+
+                <a href="../ICursos/InfoCursos.php"><button type="submit" class="btn">Ir a cursos</button></a>
+
+            </div>
+
+        </section>
+
+        <!-- End course -->
 
         <!-- Sesion Profesores Cursos -->
 
@@ -168,7 +204,7 @@ if ($_SESSION['usuario']) {
 
             <h1 class="heading">Nuestros Expertos Maestros</h1>
 
-            <div class="box-container">
+            <div class="box-container" data-aos="fade-right">
 
                 <div class="box">
 
@@ -179,9 +215,9 @@ if ($_SESSION['usuario']) {
 
             </div>
 
-            <div class="image">
+            <div class="image" data-aos="fade-down">
 
-                <img src="../img/courses/congratulations-you-did-test-very-well.jpg" alt="">
+                <img src="../img/courses/congratulations-you-did-test-very-well.jpg" alt="" >
 
             </div>
         </section>
@@ -196,7 +232,7 @@ if ($_SESSION['usuario']) {
 
             <div class="row">
 
-                <form action="">
+                <form action="" data-aos="fade-right">
 
                     <input type="text" placeholder="full name" class="box">
                     <input type="email" placeholder="your email" class="box">
@@ -244,10 +280,10 @@ if ($_SESSION['usuario']) {
 
                 <div class="box">
 
-                <h3>Informacion de contacto</h3>
-                <a> <i class="fas fa-map-marker-alt"></i> CDMX, MEXICO</a>
-                <a> <i class="fas fa-envelope"></i> example@gmail.com</a>
-                <a> <i class="fas fa-phone"></i> +94 55 4424 0341</a>
+                    <h3>Informacion de contacto</h3>
+                    <a> <i class="fas fa-map-marker-alt"></i> CDMX, MEXICO</a>
+                    <a> <i class="fas fa-envelope"></i> example@gmail.com</a>
+                    <a> <i class="fas fa-phone"></i> +94 55 4424 0341</a>
 
                 </div>
 
@@ -255,25 +291,46 @@ if ($_SESSION['usuario']) {
 
         </div>
 
+    
+            </body>
 
-        <!-- Optional JavaScript -->
-        <!-- Popper.js first, then Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
-        </script>
+            </html>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>>
 
-        <script src="../js/main.js"></script>
 
-    <?php
+            <!-- Optional JavaScript -->
+            <!-- Popper.js first, then Bootstrap JS -->
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+            </script>
 
-} else {
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
-    header('location: ../404/404.php');
-} ?>
+            <script src="../js/main.js"></script>
+
+        <?php
+
+    } else {
+
+        header('location: ../404/404.php');
+    } ?>
+
+
+<!-- Initializing aos -->
+
+    <script>
+
+    AOS.init({
+
+        delay:400,
+        duration:1000
+
+    })
+
+    </script>
 
     </body>
 
