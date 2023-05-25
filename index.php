@@ -1,4 +1,21 @@
 <?php session_start(); ?>
+
+<!-- Conexion base de datos -->
+
+<?php
+
+$conexion = mysqli_connect('localhost', 'root', '', 'curso');
+
+/* if($conexion){
+        echo "<p>Función la conexión</p>";
+    }
+    else{
+        echo "Error en la conexión".mysqli_error($conexion);
+    }*/
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,8 +114,6 @@
         $usuario = $_REQUEST['usuario'];
         $clave = $_REQUEST['clave'];
 
-        include('config/conexion.php');
-
             if ($usuario == $usuario) {
 
                 $query = "SELECT identificacion FROM administrador WHERE email='$usuario' AND clave='$clave'";
@@ -122,7 +137,7 @@
                     $_SESSION['usuario'] = $usuario;
                     echo '<script>
             
-            window.location = "Inicio/inicio.html";
+            window.location = "Inicio/inicio.php";
 
             </script>';
                 }
@@ -146,5 +161,3 @@
     ?>
 
 </body>
-
-</html>

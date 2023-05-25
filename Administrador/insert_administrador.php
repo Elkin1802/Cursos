@@ -1,104 +1,116 @@
 <?php session_start(); ?>
 
-<!doctype html>
-<html lang="en">
+<!-- Conexion base de datos -->
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="../css/users.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-</head>
+<?php
 
-<body>
+$conexion = mysqli_connect('localhost', 'root', '', 'curso');
 
-    <form class="index.php" method="POST">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Identificación</label>
-            <input type="number" name="id_usuario" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" required>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Nombres</label>
-            <input type="text" name="nombres" class="form-control" id="exampleInputPassword1" required>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Apellidos</label>
-            <input type="text" name="apellidos" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" required>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">País </label>
-            <input type="text" name="pais" class="form-control" id="exampleInputPassword1" required>
-
-        </div>
-
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Telefóno</label>
-            <input type="tel" name="telefono" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                required>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
-            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                required>
-            <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" name="clave" class="form-control" id="exampleInputPassword1" required>
-        </div>
-        <button type="submit" name="iniciar" class="btn btn-primary">Insertar</button>
-    </form>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
-        integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
-        integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous">
-    </script>
-
-    <?php
-
-    include('../config/conexion.php');
-
-    if (isset($_REQUEST['iniciar']) && !empty($_REQUEST['id_usuario']) && !empty($_REQUEST['nombres']) && !empty($_REQUEST['apellidos']) && !empty($_REQUEST['pais']) && !empty($_REQUEST['telefono']) && !empty(['email']) && !empty(['clave'])) {
-
-        $c1 = $_REQUEST['id_usuario'];
-        $c2 = $_REQUEST['nombres'];
-        $c3 = $_REQUEST['apellidos'];
-        $c4 = $_REQUEST['pais'];
-        $c5 = $_REQUEST['telefono'];
-        $c6 = $_REQUEST['email'];
-        $c7 = $_REQUEST['clave'];
-
-
-        $insertar = "CALL insertarAdministrador ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
-        $query = mysqli_query($conexion, $insertar);
-
-        if ($query) {
-            echo '<script>
-            
-        window.location = "../IAdministrador/InfoAdm.php";
-
-        </script>';
-        } elseif ($query) {
-
-            echo '<script>
-        
-            windows.location = "../Inicio/index2.html";
-
-            </script>';
-        }
+/* if($conexion){
+        echo "<p>Función la conexión</p>";
     }
+    else{
+        echo "Error en la conexión".mysqli_error($conexion);
+    }*/
+?>
 
-    ?>
+<?php
+
+
+if ($_SESSION['usuario']) {
+
+?>
+
+
+
+<?php 
+	include_once '../config/conexion.php';
+	
+	if(isset($_POST['guardar'])){
+		$identificacion=$_POST['identificacion'];
+		$nombres=$_POST['nombres'];
+		$apellidos=$_POST['apellidos'];
+		$pais=$_POST['pais'];
+		$telefono=$_POST['telefono'];
+		$email=$_POST['email'];
+		$clave=$_POST['clave'];
+
+		if(!empty('identificacion') && !empty($nombres) && !empty($apellidos) && !empty($pais) && !empty($telefono) && !empty($email) && !empty($clave) ){
+			if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+				echo "<script> alert('Correo no valido');</script>";
+			}else{
+				$consulta_insert=$conexion->prepare('INSERT INTO administrador(identificacion,nombres,apellidos,pais,telefono,email,clave) VALUES(:identificacion,:nombres,:apellidos,:pais,:telefono,:email,:clave)');
+				$consulta_insert->execute(array(
+					':identificacion' =>$identificacion,
+					':nombres' =>$nombres,
+					':apellidos' =>$apellidos,
+					':pais' =>$pais,
+					':telefono' =>$telefono,
+					':email' =>$email,
+					':clave' =>$clave
+				));
+				header('Location: ../IAdministrador/InfoAdm.php');
+			}
+		}else{
+			echo "<script> alert('Los campos estan vacios');</script>";
+		}
+
+	}
+
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Nuevo Cliente</title>
+	<link rel="stylesheet" href="../css/estilos.css">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="contenedor">
+		<h2>Insertar Un Nuevo Administrador</h2>
+		<form action="" method="post">
+			<div class="form-group">
+				<input type="text" name="identificacion" placeholder="Identificacion" class="input__text">
+				<input type="text" name="nombres" placeholder="Nombres" class="input__text">
+			</div>
+			<div class="form-group">
+				<input type="text" name="apellidos" placeholder="Apellidos" class="input__text">
+				<input type="text" name="pais" placeholder="Pais" class="input__text">
+			</div>
+			<div class="form-group">
+				<input type="text" name="telefono" placeholder="Telefono" class="input__text">
+				<input type="text" name="email" placeholder="Email" class="input__text">
+			</div>
+			<div class="form-group">
+				<input type="text" name="clave" placeholder="Clave" class="input__text">
+			</div>
+
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				
+				<a href="../IAdministrador/InfoAdm.php" class="btn btn-danger">Cancelar</a>
+				<input type="submit" name="guardar" value="Guardar" class="btn btn-success">
+
+			</div>
+
+		</form>
+	</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+    </script>
+
+<?php
+
+} else {
+
+    header('location: ../404/404.php');
+} ?>
 
 </body>
-
 </html>

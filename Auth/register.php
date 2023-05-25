@@ -1,4 +1,40 @@
-<?php session_start(); ?>
+<?php 
+	include_once '../config/conexion.php';
+	
+	if(isset($_POST['guardar'])){
+		$identificacion=$_POST['identificacion'];
+		$nombres=$_POST['nombres'];
+		$apellidos=$_POST['apellidos'];
+		$pais=$_POST['pais'];
+		$telefono=$_POST['telefono'];
+		$email=$_POST['email'];
+		$clave=$_POST['clave'];
+		$estado=$_POST['estado'];
+
+		if(!empty('identificacion') && !empty($nombres) && !empty($apellidos) && !empty($pais) && !empty($telefono) && !empty($email) && !empty($clave) && !empty($estado) ){
+			if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+				echo "<script> alert('Correo no valido');</script>";
+			}else{
+				$consulta_insert=$conexion->prepare('INSERT INTO usuario(identificacion,nombres,apellidos,pais,telefono,email,clave,estado) VALUES(:identificacion,:nombres,:apellidos,:pais,:telefono,:email,:clave,:estado)');
+				$consulta_insert->execute(array(
+					':identificacion' =>$identificacion,
+					':nombres' =>$nombres,
+					':apellidos' =>$apellidos,
+					':pais' =>$pais,
+					':telefono' =>$telefono,
+					':email' =>$email,
+					':clave' =>$clave,
+					':estado' =>$estado
+				));
+				header('Location: ../Inicio/inicio.html');
+			}
+		}else{
+			echo "<script> alert('Los campos estan vacios');</script>";
+		}
+
+	}
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -7,8 +43,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrarse</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
@@ -104,7 +139,16 @@
                                 placeholder="Ingresa tu contraseña" aria-describedby="Contraseña" required>
                         </div>
 
-                        <button type="submit" name="log" class="btn btn-primary w-100">Registrarse</button>
+                        <div class="col-lg-4 m-0">
+                            <label class="form-label font-weight-bold">Estado</label>
+                            <select name="estado" class="form-control">
+
+                            <option value="Evaluando">Evaluando</option>
+
+                            </select>
+                        </div>
+
+                        <button type="submit" name="guardar" class="btn btn-primary w-100">Registrarse</button>
                     </form>
 
                     <div class="text-center px-lg-0 pt-lg-0 pb-lg-0 p-0 w-100">
@@ -132,38 +176,7 @@
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
     </script>
 
-    <?php
-
-    if (isset($_REQUEST['log']) && !empty($_REQUEST['identificacion']) && !empty($_REQUEST['nombres']) && !empty($_REQUEST['apellidos']) && !empty($_REQUEST['pais']) && !empty($_REQUEST['telefono']) && !empty($_REQUEST['email']) && !empty($_REQUEST['clave'])) {
-
-        $c1 = $_REQUEST['identificacion'];
-        $c2 = $_REQUEST['nombres'];
-        $c3 = $_REQUEST['apellidos'];
-        $c4 = $_REQUEST['pais'];
-        $c5 = $_REQUEST['telefono'];
-        $c6 = $_REQUEST['email'];
-        $c7 = $_REQUEST['clave'];
-
-        include('../config/conexion.php');
-
-        if ($c6=$c6) { 
-        
-
-            $query = "CALL insertarUsuario ('$c1','$c2','$c3','$c4','$c5','$c6','$c7')";
-            $resultado = mysqli_query($conexion, $query);
-            if ($query) {
-                echo '<script>
-        
-        window.location = "../Inicio/inicio.html";
-
-        </script>';
-            }
-        } 
-    }
-
-    ?>
-
-    <script src="../js/modal.js"></script>
+    <script src="../js/modal.js"></script> 
 
 </body>
 

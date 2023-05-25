@@ -1,3 +1,27 @@
+<?php session_start(); ?>
+
+<!-- Conexion base de datos -->
+
+<?php
+
+$conexion = mysqli_connect('localhost', 'root', '', 'curso');
+
+/* if($conexion){
+        echo "<p>Función la conexión</p>";
+    }
+    else{
+        echo "Error en la conexión".mysqli_error($conexion);
+    }*/
+?>
+
+
+<?php
+
+if ($_SESSION['usuario']) {
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +101,7 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="../index.php">
+                    <a href="../Auth/cerrar_sesion.php">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -154,7 +178,7 @@
                             <td>Cursos</td>
                             <td>
 
-                                <a href="#"><button><i
+                                <a href="#"><button class="btn tbn-primary"><i
                                             class="bi bi-info-circle-fill"></i></button></a>
 
 
@@ -165,8 +189,7 @@
 
                             <td>Profesores</td>
                             <td>
-                            <box-icon name='info-circle' animation='tada' rotate='90' ></box-icon>  
-                                <a href="../IProfesor/InfoTeacher.php"><button><i
+                                <a href="../IProfesor/InfoTeacher.php"><button class="btn tbn-primary"><i
                                             class="bi bi-info-circle-fill"></i></button></a>
 
 
@@ -178,7 +201,7 @@
                             <td>Usuarios</td>
                             <td>
 
-                                <a href="../IUsuario/InfoUsers.php"><button type="submitñ"><i
+                                <a href="../IUsuario/InfoUsers.php"><button type="submit" class="btn tbn-primary"><i
                                             class="bi bi-info-circle-fill"></i></button></a>
 
                             </td>
@@ -189,7 +212,7 @@
                             <td>Pagos</td>
                             <td>
 
-                                <a href="#"><button type="submit"><i
+                                <a href="#" class="agg"><button type="submit" class="btn tbn-primary"><i
                                             class="bi bi-info-circle-fill"></i></button></a>
 
 
@@ -202,7 +225,7 @@
                             <td>Administradores</td>
                             <td>
 
-                                <a href="../IAdministrador/InfoAdm.php"><button type="submit"><i
+                                <a href="../IAdministrador/InfoAdm.php"><button type="submit" class="btn tbn-primary"><i
                                             class="bi bi-info-circle-fill"></i></button></a>
 
 
@@ -231,6 +254,14 @@
     </script>
 
 <script src="../js/main.js"></script>
+
+
+<?php
+}else
+
+	header('location: ../404/404.php');
+
+?>
 
 </body>
 

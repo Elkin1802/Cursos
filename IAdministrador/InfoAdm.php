@@ -1,125 +1,126 @@
-<?php session_start();
+<?php session_start(); ?>
+
+<!-- Conexion base de datos -->
+
+<?php
+
+$conexion = mysqli_connect('localhost', 'root', '', 'curso');
+
+/* if($conexion){
+        echo "<p>Función la conexión</p>";
+    }
+    else{
+        echo "Error en la conexión".mysqli_error($conexion);
+    }*/
+?>
+
+<?php
+
+
+if ($_SESSION['usuario']) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+    <?php
+    include_once '../config/conexion.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informacion Administradores</title>
+    $sentencia_select = $conexion->prepare('SELECT *FROM administrador ORDER BY identificacion DESC');
+    $sentencia_select->execute();
+    $resultado = $sentencia_select->fetchAll();
 
-    <link rel="stylesheet" href="../css/tables.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    // metodo buscar
+    if (isset($_POST['btn_buscar'])) {
+        $buscar_text = $_POST['buscar'];
+        $select_buscar = $conexion->prepare(
+            '
+			SELECT * FROM administrador WHERE nombres LIKE :campo OR apellidos LIKE :campo;'
+        );
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        $select_buscar->execute(array(
+            ':campo' => "%" . $buscar_text . "%"
+        ));
 
+        $resultado = $select_buscar->fetchAll();
+    }
 
-</head>
+    ?>
 
-<body>
+    <!DOCTYPE html>
+    <html lang="es">
 
-    <div class="table">
-        <div class="table_header">
-            <p>Ver informacion Administrativa</p>
-            <div>
+    <head>
+        <meta charset="UTF-8">
+        <title>Inicio</title>
 
-                <form class="d-flex">
+        <link rel="stylesheet" href="../css/tables.css">
 
-                    <input placeholder="Buscar" type="search" name="busqueda">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-                    <button class="add_new" type="submit" name="enviar"><i class="bi bi-search"></i></button>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    </head>
 
-                    <a href="../Administrador/insert_administrador.php" id="agg" ><i class="bi bi-plus-circle-fill"></i></a>
+    <body>
 
-                    
+        <div class="table">
+            <div class="table_header">
+                <p>Ver informacion Administrativa</p>
 
+                <div>
+                    <form action="" class="d-flex" method="post">
+                        <input type="text" name="buscar" placeholder="Buscar" value="<?php if (isset($buscar_text)) echo $buscar_text; ?>" class="input__text">
+                        <button class="add_new" type="submit" name="btn_buscar" value="Buscar"><i class="bi bi-search"></i></button>
+
+                        <a href="../Administrador/insert_administrador.php" id="agg"><i class="bi bi-plus-circle-fill"></i></a>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <?php
-        $conexion = mysqli_connect("localhost", "root", "", "curso");
-        $where = "";
+            <div class="table_section">
 
-        if (isset($_GET['enviar'])) {
-            $busqueda = $_GET['busqueda'];
+                <table>
 
+                    <thead>
 
-            if (isset($_GET['busqueda'])) {
-                $where = "WHERE email LIKE'%" . $busqueda . "%' OR nombres  LIKE'%" . $busqueda . "%'
-    OR apellidos LIKE'%" . $busqueda . "%' OR pais  LIKE'%" . $busqueda . "%' OR telefono  LIKE'%" . $busqueda . "%' OR identificacion  LIKE'%" . $busqueda . "%'";
-            }
-        }
+                        <tr>
 
-        ?>
+                            <td>Nombres</td>
+                            <td>Apellidos</td>
+                            <td>Pais</td>
+                            <td>Teléfono</td>
+                            <td>Correo</td>
+                            <td>Acción</td>
 
-        <div class=" table_section">
+                        </tr>
+                    </thead>
 
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Pais</th>
-                        <th>Telefono</th>
-                        <th>Email</th>
-                        <th>Acciones</th>
-
-                    </tr>
-
-                </thead>
-
-                <?php
-$conexion=mysqli_connect("localhost","root","","curso");               
-$SQL="SELECT nombres, apellidos, pais, telefono, email 
-FROM administrador $where";
-$dato = mysqli_query($conexion, $SQL);
-
-if($dato -> num_rows >0){
-    while($fila=mysqli_fetch_array($dato)){
+                    <?php foreach ($resultado as $fila) : ?>
+                        <tr>
+                            <td><?php echo $fila['nombres']; ?></td>
+                            <td><?php echo $fila['apellidos']; ?></td>
+                            <td><?php echo $fila['pais']; ?></td>
+                            <td><?php echo $fila['telefono']; ?></td>
+                            <td><?php echo $fila['email']; ?></td>
+                            <td class="text-center">
 
 
+                                <a href="../Administrador/update_administrador.php?id=<?php echo $fila['identificacion']; ?>" class="btn__update" id="agg"><i class="bi bi-pencil-square"></i></a>
+                                <a href="../Administrador/delete_administrador.php?id=<?php echo $fila['identificacion']; ?>" class="btn__delete" id="agg"><i class="bi bi-trash-fill"></i></a>
 
-                        echo '
-                <tr>
-                    <td>' . $fila['nombres'] . '</td>
-                    <td>' . $fila['apellidos'] . '</td>
-                    <td>' . $fila['pais'] . '</td>
-                    <td>' . $fila['telefono'] . '</td>
-                    <td>' . $fila['email'] . '</td>
-                    <td class="text-center">
-                        <button><i class="bi bi-pencil-square"></i></button>
-                        <button><i class="bi bi-trash-fill"></i></button>
-                    </td>
-                </tr>
-                ';
-                    }
-                } else {
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
 
-                ?>
-                <tr>
-                    <td colspan="7">No existen registros</td>
-                </tr>
-
-
-                <?php
-                }
-
-
-                ?>
-            </table>
+                </table>
+            </div>
 
         </div>
 
-    </div>
+    <?php
 
+} else {
 
+    header('location: ../404/404.php');
+} ?>
+    </body>
 
-</body>
-
-</html>
+    </html>
