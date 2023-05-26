@@ -4,7 +4,7 @@ session_start();
 
 $conexion = mysqli_connect('localhost', 'root', '', 'curso');
 
-/* if($conexion){
+/* f($conexion){
         echo "<p>Función la conexión</p>";
     }
     else{
