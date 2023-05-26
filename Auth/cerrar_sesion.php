@@ -11,7 +11,7 @@ $conexion = mysqli_connect('localhost', 'root', '', 'curso');
         echo "Error en la conexión".mysqli_error($conexion);
     }*/
 
-if (!$_SESSION['usuario']) {
+if ($_SESSION['usuario']) {
 
 session_destroy();
 header('location: ../index.php');
