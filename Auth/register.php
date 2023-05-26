@@ -26,7 +26,7 @@
 					':clave' =>$clave,
 					':estado' =>$estado
 				));
-				header('Location: ../Inicio/inicio.html');
+				header('Location: ../Inicio/inicio.php');
 			}
 		}else{
 			echo "<script> alert('Los campos estan vacios');</script>";

@@ -1,26 +1,3 @@
-<?php session_start(); ?>
-
-<!-- Conexion base de datos -->
-
-<?php
-
-$conexion = mysqli_connect('localhost', 'root', '', 'curso');
-
-/* if($conexion){
-        echo "<p>Función la conexión</p>";
-    }
-    else{
-        echo "Error en la conexión".mysqli_error($conexion);
-    }*/
-?>
-
-<?php
-
-
-if ($_SESSION['usuario']) {
-
-?>
-
 
     <!DOCTYPE html>
     <html lang="en">
@@ -107,12 +84,12 @@ if ($_SESSION['usuario']) {
                 </div>
 
                 <div class="bottom-content">
-                    <li class="">
-                        <a href="../index.php">
-                            <i class='bx bx-log-out icon'></i>
-                            <span class="text nav-text">Logout</span>
-                        </a>
-                    </li>
+                <li class="">
+                    <a href="../Auth/cerrar_sesion.php">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
 
                     <li class="mode">
                         <div class="sun-moon">
@@ -310,14 +287,6 @@ if ($_SESSION['usuario']) {
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
             <script src="../js/main.js"></script>
-
-        <?php
-
-    } else {
-
-        header('location: ../404/404.php');
-    } ?>
-
 
 <!-- Initializing aos -->
 
