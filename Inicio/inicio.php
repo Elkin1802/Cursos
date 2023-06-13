@@ -1,5 +1,4 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -9,6 +8,7 @@
 
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/intento.css">
+        <link rel="stylesheet" href="../css/modal.css">
 
         <title>Document</title>
 
@@ -46,7 +46,7 @@
                 <div class="menu">
                     <ul class="menu-links">
                         <li class="nav-link">
-                            <a href="#">
+                            <a href="#home">
                                 <i class='bx bx-home-alt icon'></i>
                                 <span class="text nav-text">Inicio</span>
                             </a>
@@ -60,7 +60,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="#course">
+                            <a href="../ICursos/InfoCursos.php">
                                 <i class='bx bx-library icon'></i>
                                 <span class="text nav-text">Cursos</span>
                             </a>
@@ -74,7 +74,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="../Usuario/update_usuario.php">
+                        <a href="#" class="hero__cta">
                                 <i class='bx bx-edit-alt icon'></i>
                                 <span class="text nav-text">Actualizar Datos</span>
                             </a>
@@ -85,23 +85,11 @@
 
                 <div class="bottom-content">
                 <li class="">
-                    <a href="../Auth/cerrar_sesion.php">
+                    <a href="../index.php">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
-
-                    <li class="mode">
-                        <div class="sun-moon">
-                            <i class='bx bx-moon icon moon'></i>
-                            <i class='bx bx-sun icon sun'></i>
-                        </div>
-                        <span class="mode-text text">Dark mode</span>
-
-                        <div class="toggle-switch">
-                            <span class="switch"></span>
-                        </div>
-                    </li>
 
                 </div>
             </div>
@@ -211,13 +199,13 @@
 
                 <form action="" data-aos="fade-right">
 
-                    <input type="text" placeholder="full name" class="box">
-                    <input type="email" placeholder="your email" class="box">
-                    <input type="password" placeholder="your pasword" class="box">
-                    <input type="number" placeholder="your number" class="box">
+                    <input type="text" placeholder="Nombres Completos" class="box">
+                    <input type="email" placeholder="Email De Contacto" class="box">
+                    <input type="password" placeholder="Direccion" class="box">
+                    <input type="number" placeholder="yNumero telefonico" class="box">
 
-                    <textarea name="" id="" cols="30" rows="10" class="box address" placeholder="ypur addres"></textarea>
-                    <input type="submit" class="btn" value="send now">
+                    <textarea name="" id="" cols="30" rows="10" class="box address" placeholder="Campo de texto"></textarea>
+                    <input type="submit" class="btn" value="Enviar Solicitud">
 
                 </form>
 
@@ -247,10 +235,10 @@
                 <div class="box">
 
                     <h3>Enlaces rapidos</h3>
-                    <a href="#">Inicio</a>
-                    <a href="#">Acerca de</a>
-                    <a href="#">Cursos</a>
-                    <a href="#">Profesores</a>
+                    <a href="#home">Inicio</a>
+                    <a href="#about">Acerca de</a>
+                    <a href="#course">Cursos</a>
+                    <a href="#teacher">Profesores</a>
                     <a href="#">Actualizar Datos</a>
 
                 </div>
@@ -268,7 +256,16 @@
 
         </div>
 
-    
+        <section class="modal ">
+        <div class="modal__container">
+            <img src="../img/modal/6306470-PhotoRoom.png-PhotoRoom.svg" class="modal__img">
+            <h2 class="modal__title">¡Bienvenido a tu espacion Usuario!</h2>
+            <p class="modal__paragraph">Recibimos su accion para editar tus datos<br>
+            Ingresa tu identificacion, despues de ellos ingresa de nuevos tus datos, ya sehan existentes o nuevos</p>
+            <a href="#" class="modal__close">Cerrar Modal</a>
+            <a href="../Usuario/actualizar_datos.php" class="btn">Ir actualizar los datos</a>
+    </section>
+
             </body>
 
             </html>
@@ -287,6 +284,7 @@
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
             <script src="../js/main.js"></script>
+            <script src="../js/modal.js"></script>
 
 <!-- Initializing aos -->
 

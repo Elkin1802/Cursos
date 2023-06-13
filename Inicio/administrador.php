@@ -42,6 +42,7 @@ if ($_SESSION['usuario']) {
 
     <link rel="stylesheet" href="../css/tables.css">
     <link rel="stylesheet" href="../css/intento.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -76,14 +77,14 @@ if ($_SESSION['usuario']) {
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                    <a href="#">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Inicio</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                    <a href="#" class="hero__cta">
                         <i class='bx bx-edit-alt icon' ></i>
                             <span class="text nav-text">Actualizar datos</span>
                         </a>
@@ -107,18 +108,6 @@ if ($_SESSION['usuario']) {
                     </a>
                 </li>
 
-                <li class="mode">
-                    <div class="sun-moon">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
-                    </div>
-                    <span class="mode-text text">Dark mode</span>
-
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
-                </li>
-                
             </div>
         </div>
 
@@ -178,7 +167,7 @@ if ($_SESSION['usuario']) {
                             <td>Cursos</td>
                             <td>
 
-                                <a href="#"><button class="btn tbn-primary"><i
+                                <a href="../ICursos/TableCursos.php"><button class="btn tbn-primary"><i
                                             class="bi bi-info-circle-fill"></i></button></a>
 
 
@@ -212,7 +201,7 @@ if ($_SESSION['usuario']) {
                             <td>Pagos</td>
                             <td>
 
-                                <a href="#" class="agg"><button type="submit" class="btn tbn-primary"><i
+                                <a href="../Pago/InfoPago.php" class="agg"><button type="submit" class="btn tbn-primary"><i
                                             class="bi bi-info-circle-fill"></i></button></a>
 
 
@@ -240,8 +229,16 @@ if ($_SESSION['usuario']) {
             </div>
 
         </div>
+    </section>
 
-
+    <section class="modal ">
+        <div class="modal__container">
+            <img src="../img/modal/6306470-PhotoRoom.png-PhotoRoom.svg" class="modal__img">
+            <h2 class="modal__title">¡Bienvenido a tu espacio Administrador!</h2>
+            <p class="modal__paragraph">Recibimos su accion para editar tus datos<br>
+            Ingresa tu identificacion, despues de ellos ingresa de nuevos tus datos, ya sehan existentes o nuevos</p>
+            <a href="#" class="modal__close ">Cerrar Modal</a>
+            <a href="../Administrador/actualizar_datos.php" class="modal__close">Ir actualizar los datos</a>
     </section>
 
     <!-- Optional JavaScript -->
@@ -254,6 +251,7 @@ if ($_SESSION['usuario']) {
     </script>
 
 <script src="../js/main.js"></script>
+<script src="../js/modal.js"></script>
 
 
 <?php
