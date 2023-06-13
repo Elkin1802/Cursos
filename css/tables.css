@@ -77,6 +77,14 @@ td #agg:nth-child(2) {
 
 }
 
+#view {
+
+    padding: 6px 20px;
+    color: #ffffff;
+    background-color: #54b8b8;
+
+}
+
 a {
 
     outline: none;

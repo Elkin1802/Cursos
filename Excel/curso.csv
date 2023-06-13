@@ -1,0 +1,11 @@
+id_curso ; nombre_curso;precio;descuento;fecha_inicio;fecha_fin;administrador_id_administrador ;descripcion;activo;profesor_identificacion 
+1;Bilinguismo;40;0;1/06/2023;1/06/2025;9877985;Consiste en compaginar la ense¤anza en dos lenguas de manera habitual. Cada d¡a son m s los centros que ofrecen una ense¤anza del espa¤ol con el ingl‚s, el franc‚s o el alem n.;1;1221979792
+2;Mecatronica;350;0;1/06/2023;1/06/2025;9877985;La mecatr¢nica es un  rea multidisciplinar que incorpora elementos de la electr¢nica la mec nica, la rob¢tica, sistemas de computaci¢n y fabricaci¢n. Tambi‚n se estudian los distintos sensores y el funcionamiento de m quinas industriales, procesos de fabricaci¢n, etc.;1;1221979792
+3;Robotica;250;0;1/06/2023;1/06/2025;9877985;La formaci¢n en Rob¢tica te permite adquirir conocimientos vinculados al dise¤o, producci¢n, mantenimiento y programaci¢n de robots. Estos conocimientos pueden ser electr¢nicos, mec nicos, inform ticos o f¡sicos.;1;1221979792
+4;Desarrollo de Software;105;0;1/06/2023;1/06/2025;9877985;"te formar  como experto en sistemas inform ticos, animaci¢n 3D, desarrollo y mantenimiento de redes; adem s de su aplicaci¢n en los negocios, con conocimientos clave de los distintos lenguajes de programaci¢n.";1;1221979792
+5;Fotografo;12;0;1/06/2023;1/06/2025;9877985;B sicamente, en todo curso de fotograf¡a aprenderemos a captar y editar im genes de calidad a partir del conocimiento de los distintos elementos que integran una c mara de fotos, su aplicaci¢n pr ctica en base a diferentes t‚cnicas fotogr ficas y el manejo de un programa de edici¢n de imagen como es Photoshop.;1;1221979792
+6;Locutor;20;0;1/06/2023;1/06/2025;9877985;Un curso de locutor ense¤a a los alumnos a hablar correctamente. Por eso, m s all  de entonaciones y dem s, se trabaja en la vocalizaci¢n, en la dicci¢n, en la interpretaci¢n, en la modulaci¢n y en la impostaci¢n de la voz.;1;1221979792
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;

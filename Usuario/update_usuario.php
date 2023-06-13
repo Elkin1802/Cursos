@@ -44,7 +44,6 @@ if ($_SESSION['usuario']) {
 		$telefono=$_POST['telefono'];
 		$email=$_POST['email'];
 		$clave=$_POST['clave'];
-		$estado=$_POST['estado'];
 		$id=(int) $_GET['id'];
 
 		if(!empty('identificacion') && !empty($nombres) && !empty($apellidos) && !empty($pais) && !empty($telefono) && !empty($email) && !empty($clave) ){
@@ -58,7 +57,6 @@ if ($_SESSION['usuario']) {
 					telefono=:telefono,
 					email=:email,
 					clave=:clave,
-					estado=:estado
 					WHERE identificacion=:id;'
 				);
 				$consulta_update->execute(array(
@@ -68,7 +66,6 @@ if ($_SESSION['usuario']) {
 					':telefono' =>$telefono,
 					':email' =>$email,
 					':clave' =>$clave,
-					':estado' =>$estado,
 					':id' =>$id
 				));
 				header('Location: ../IUsuario/InfoUsers.php');
@@ -79,6 +76,20 @@ if ($_SESSION['usuario']) {
 	}
 
 ?>
+
+<?php
+
+$conexion = mysqli_connect('localhost', 'root', '', 'curso');
+
+$insert = mysqli_query($conexion, "SELECT identificacion, nombres, apellidos FROM usuario");
+
+if (isset($_POST['usuario'])) {
+	$usuario = $_POST['usuario'];
+	echo $usuario;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -110,17 +121,6 @@ if ($_SESSION['usuario']) {
 				<input type="text" name="email" placeholder="Email" value="<?php if($resultado) echo $resultado['email']; ?>" class="input__text">
 				<input type="password" name="clave" placeholder="Clave" value="<?php if($resultado) echo $resultado['clave']; ?>" class="input__text">
 				
-			</div>
-
-			<div class="form-group">
-				
-				<!-- <input type="text" name="estado" placeholder="Clave" class="input__text"> -->
-				<select name="estado"  value="<?php if($resultado) echo $resultado['estado']; ?>" class="input__text" >
-			
-					<option value="Activo">Activo</option>
-					<option value="Retirado">Retirado</option>
-
-			</select>
 			</div>
 
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">

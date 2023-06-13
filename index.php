@@ -14,8 +14,6 @@ $conexion = mysqli_connect('localhost', 'root', '', 'curso');
     }*/
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,8 +22,7 @@ $conexion = mysqli_connect('localhost', 'root', '', 'curso');
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 
     <script src="https://kit.fontawesome.com/ffec4ec2ed.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/sesion.css" />
@@ -76,23 +73,19 @@ $conexion = mysqli_connect('localhost', 'root', '', 'curso');
                     <form class="mb-5" action="index.php" method="POST">
                         <div class="mb-4">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold">Email</label>
-                            <input type="email" name="usuario" class="form-control bg-dark-x border-0"
-                                id="exampleInputEmail1" placeholder="Ingresa tu email" aria-describedby="emailHelp"
-                                required>
+                            <input type="email" name="usuario" class="form-control bg-dark-x border-0" id="exampleInputEmail1" placeholder="Ingresa tu email" aria-describedby="emailHelp" required>
                         </div>
 
                         <div class="mb-4">
                             <label for="exampleInputPassword1" class="form-label font-weight-bold">Contraseña</label>
-                            <input type="password" name="clave" class="form-control bg-dark-x border-0 mb-2"
-                                placeholder="Ingresa tu contraseña" id="exampleInputPassword1" required>
+                            <input type="password" name="clave" class="form-control bg-dark-x border-0 mb-2" placeholder="Ingresa tu contraseña" id="exampleInputPassword1" required>
                         </div>
                         <button type="submit" name="log" class="btn btn-primary w-100">Iniciar sesión</button>
                     </form>
 
                 </div>
                 <div class="text-center px-lg-0 pt-lg-0 pb-lg-0 p-0 w-100">
-                    <p class="d-inline-block m-0">¿Todavia no tienes una cuenta?</p> <a href="./Auth/register.php"
-                        class="text-light font-weight-bold text-decoration-none">Crea una ahora</a>
+                    <p class="d-inline-block m-0">¿Todavia no tienes una cuenta?</p> <a href="./Auth/register.php" class="text-light font-weight-bold text-decoration-none">Crea una ahora</a>
                 </div>
             </div>
         </div>
@@ -100,11 +93,9 @@ $conexion = mysqli_connect('localhost', 'root', '', 'curso');
 
     <!-- Optional JavaScript -->
     <!-- Popper.js first, then Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
     </script>
 
     <?php
@@ -114,49 +105,52 @@ $conexion = mysqli_connect('localhost', 'root', '', 'curso');
         $usuario = $_REQUEST['usuario'];
         $clave = $_REQUEST['clave'];
 
-            if ($usuario == $usuario) {
+        if ($usuario == $usuario) {
 
-                $query = "SELECT identificacion FROM administrador WHERE email='$usuario' AND clave='$clave'";
-                $resultado = mysqli_query($conexion, $query);
-                if (mysqli_num_rows($resultado) > 0) {
-                    $row = mysqli_fetch_row($resultado);
-                    $_SESSION['usuario'] = $usuario;
+            $query = "SELECT identificacion FROM administrador WHERE email='$usuario' AND clave='$clave'";
+            $resultado = mysqli_query($conexion, $query);
+            if (mysqli_num_rows($resultado) > 0) {
+                $row = mysqli_fetch_row($resultado);
+                $_SESSION['usuario'] = $usuario;
 
-                    echo '<script>
+                echo '<script>
             
             window.location = "Inicio/administrador.php";
 
             </script>';
-                }
-            } if ($usuario == $usuario) {
+            }
+        }
+        if ($usuario == $usuario) {
 
-                $query = "SELECT identificacion FROM usuario WHERE email='$usuario' AND clave='$clave'";
-                $resultado = mysqli_query($conexion, $query);
-                if (mysqli_num_rows($resultado) > 0) {
-                    $row = mysqli_fetch_row($resultado);
-                    $_SESSION['usuario'] = $usuario;
-                    echo '<script>
+            $query = "SELECT identificacion FROM usuario WHERE email='$usuario' AND clave='$clave'";
+            $resultado = mysqli_query($conexion, $query);
+            if (mysqli_num_rows($resultado) > 0) {
+                $row = mysqli_fetch_row($resultado);
+                $_SESSION['usuario'] = $usuario;
+
+                echo '<script>
             
             window.location = "Inicio/inicio.php";
 
             </script>';
-                }
-            } if ($usuario == $usuario) {
-
-                $query = "SELECT identificacion FROM profesor WHERE email='$usuario' AND clave='$clave'";
-                $resultado = mysqli_query($conexion, $query);
-                if (mysqli_num_rows($resultado) > 0) {
-                    $row = mysqli_fetch_row($resultado);
-                    $_SESSION['usuario'] = $usuario;
-
-                    echo '<script>
-            
-            window.location = "./IProfesor/InfoTeacher.php";
-
-            </script>';
-                }
             }
         }
+        if ($usuario == $usuario) {
+
+            $query = "SELECT identificacion FROM profesor WHERE email='$usuario' AND clave='$clave'";
+            $resultado = mysqli_query($conexion, $query);
+            if (mysqli_num_rows($resultado) > 0) {
+                $row = mysqli_fetch_row($resultado);
+                $_SESSION['usuario'] = $usuario;
+
+                echo '<script>
+            
+            window.location = "./Inicio/profesor.php";
+
+            </script>';
+            }
+        }
+    }
 
     ?>
 
